@@ -1,4 +1,4 @@
-import numpy
+import numpy as np
 
 class Node(object):
     def __init__(self, inbound_nodes=[]):
@@ -52,6 +52,45 @@ class Add(Node):
         self.value = 0
         for i in self.inbound_nodes:
             self.value += i.value
+
+class Mul(Node):
+    def __init__(self, *inNodes):
+        Node.__init__(self, list(inNodes))
+    
+    def forward(self):
+        print len(self.inbound_nodes[0])
+        if len(self.inbound_nodes[0]) == 0:
+            return
+        
+        if not (len(self.inbound_nodes[0]) == len(self.inbound_nodes[1])):
+            return
+        
+        print "here"
+        self.value = np.ones(len(self.inbound_nodes[0]))
+        for i in self.inbound_nodes:
+            self.value = np.multiply(self.value,i.value)
+
+class Linear(Node):
+    def __init__(self, inputs, weights, bias):
+        Node.__init__(self, [inputs, weights, bias])
+    
+    # NOTE: The weights and bias properties here are not
+    # numbers, but rather references to other nodes.
+    # The weight and bias values are stored within the
+    # respective nodes.
+    
+    def forward(self):
+        """
+            Set self.value to the value of the linear function output.
+            
+            Your code goes here!
+            """
+    
+        self.value = 0
+    
+        self.value = np.sum(np.multiply(self.inbound_nodes[0].value,self.inbound_nodes[1].value)) + self.inbound_nodes[2].value
+
+
 
 def topological_sort(feed_dict):
     """

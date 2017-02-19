@@ -11,17 +11,43 @@
 
 from miniflow import *
 
-#x, y = Input(), Input()
-#f = Add(x, y)
-#feed_dict = {x: 10, y: 5}
+def Linear_Example():
+    ## Linear Node
+    inputs, weights, bias = Input(), Input(), Input()
 
-x, y, z = Input(), Input(), Input()
-f = Add(x, y, z)
-feed_dict = {x: 4, y: 5, z: 10}
+    f = Linear(inputs, weights, bias)
 
-sorted_nodes = topological_sort(feed_dict)
-output = forward_pass(f, sorted_nodes)
+    feed_dict = {
+        inputs: [6, 14, 3],
+        weights: [0.5, 0.25, 1.4],
+        bias: 2
+    }
 
-# NOTE: because topological_sort set the values for the `Input` nodes we could also access
-# the value for x with x.value (same goes for y).
-print("{} + {} = {} (according to miniflow)".format(feed_dict[x], feed_dict[y], output))
+    graph = topological_sort(feed_dict)
+    output = forward_pass(f, graph)
+
+    print(output) # should be 12.7 with this example
+
+
+def Add_Example():
+    ## Simple Addition
+    #x, y = Input(), Input()
+    #f = Add(x, y)
+    #feed_dict = {x: 10, y: 5}
+
+    ## Addition
+    x, y, z = Input(), Input(), Input()
+    f = Add(x, y, z)
+    feed_dict = {x: 4, y: 5, z: 10}
+
+    sorted_nodes = topological_sort(feed_dict)
+    output = forward_pass(f, sorted_nodes)
+
+    # NOTE: because topological_sort set the values for the `Input` nodes we could also access
+    # the value for x with x.value (same goes for y).
+    print("{} + {} = {} (according to miniflow)".format(feed_dict[x], feed_dict[y], output))
+
+
+if __name__ == "__main__":
+    Linear_Example()
+#    Add_Example()
