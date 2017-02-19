@@ -42,8 +42,8 @@ class Input(Node):
             self.value = value
 
 class Add(Node):
-    def __init__(self, x, y):
-        Node.__init__(self, [x, y])
+    def __init__(self, *inNodes):
+        Node.__init__(self, list(inNodes))
     
     def forward(self):
         """

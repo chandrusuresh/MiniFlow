@@ -11,11 +11,13 @@
 
 from miniflow import *
 
-x, y = Input(), Input()
+#x, y = Input(), Input()
+#f = Add(x, y)
+#feed_dict = {x: 10, y: 5}
 
-f = Add(x, y)
-
-feed_dict = {x: 10, y: 5}
+x, y, z = Input(), Input(), Input()
+f = Add(x, y, z)
+feed_dict = {x: 4, y: 5, z: 10}
 
 sorted_nodes = topological_sort(feed_dict)
 output = forward_pass(f, sorted_nodes)
