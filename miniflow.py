@@ -64,8 +64,7 @@ class Mul(Node):
         
         if not (len(self.inbound_nodes[0]) == len(self.inbound_nodes[1])):
             return
-        
-        print "here"
+
         self.value = np.ones(len(self.inbound_nodes[0]))
         for i in self.inbound_nodes:
             self.value = np.multiply(self.value,i.value)
@@ -86,9 +85,9 @@ class Linear(Node):
             Your code goes here!
             """
     
-        self.value = 0
-    
-        self.value = np.sum(np.multiply(self.inbound_nodes[0].value,self.inbound_nodes[1].value)) + self.inbound_nodes[2].value
+        self.value = np.dot(self.inbound_nodes[0].value,self.inbound_nodes[1].value)
+
+        self.value += self.inbound_nodes[2].value
 
 
 
