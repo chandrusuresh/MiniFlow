@@ -6,10 +6,17 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXFileReference section */
+		CF3B93C81E5A01AB001A0D4B /* miniflow.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = miniflow.py; sourceTree = "<group>"; };
+		CF3B93C91E5A05BE001A0D4B /* nn.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = nn.py; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
 /* Begin PBXGroup section */
 		CF3B93BC1E5A00EE001A0D4B = {
 			isa = PBXGroup;
 			children = (
+				CF3B93C91E5A05BE001A0D4B /* nn.py */,
+				CF3B93C81E5A01AB001A0D4B /* miniflow.py */,
 			);
 			sourceTree = "<group>";
 		};
